@@ -1,0 +1,17 @@
+spring:
+  hibernate:
+    ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cats
+    username: dev2
+    password: possum!
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+links:
+  cats: https://api.thecatapi.com/v1/breeds
+  countries: https://restcountries.com/v3.1/all
+  cities: https://restcountries.com/v3.1/capital/{capital}
+  persons: https://gorest.co.in/public/v1/users
