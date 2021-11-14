@@ -16,6 +16,14 @@ public class CatWeb {
     private String color;
     private String breed;
     private String registry;
+    private String origin;
+    private String countryCodes;
+    private String wikipediaUrl;
     private int age;
+    private int indoor;
+    private int adaptability;
+    private int dogFriendly;
+    private int intelligence;
+    private int hairless;
 
 }

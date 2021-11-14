@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.anma.sb</groupId>
     <artifactId>db-denerator-sb</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>db-denerator-sb</name>
     <description>db-denerator-sb</description>
     <properties>
