@@ -1,6 +1,8 @@
 package com.anma.sb.dbdeneratorsb.services.web;
 
 import com.anma.sb.dbdeneratorsb.models.web.CountryWeb;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonFactoryBuilder;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -29,7 +31,10 @@ public class CountryServiceImpl implements CountryService {
     public CountryWeb getByName(String name) {
 //        final String URL = environment.getProperty("links.countries.name");
         final String URL = "https://restcountries.com/v3.1/name/";
-        return template.getForObject(URL + name, CountryWeb.class);
+        JsonFactory factoryBuilder = new JsonFactoryBuilder().build();
+        CountryWeb countryWeboBJ = template.getForObject(URL + name, CountryWeb.class);
+//        factoryBuilder.createParser(countryWeb)
+        return countryWeboBJ;
     }
 
     @Override

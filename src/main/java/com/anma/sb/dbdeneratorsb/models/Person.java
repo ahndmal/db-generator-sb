@@ -28,9 +28,10 @@ public class Person {
     private LocalDateTime createdAt = LocalDateTime.now();
     @OneToMany
     private List<Cat> cats;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id", referencedColumnName = "country_id")
-    private Country country;
+    @Column(name = "country_id") private long countryId;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "country_id", referencedColumnName = "country_id")
+//    private Country country;
 
 
 }

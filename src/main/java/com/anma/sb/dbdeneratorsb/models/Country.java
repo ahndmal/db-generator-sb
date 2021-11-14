@@ -29,15 +29,15 @@ public class Country {
     private boolean independent;
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(name = "country_person", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "country_id"))
-    @OneToMany
-    private List<Person> persons;
+//    @OneToMany
+//    private List<Person> persons;
 //    private List<String> tld;
 
 
-    static class CountryName {
-        private String common;
-        private String official;
-    }
+//    static class CountryName {
+//        private String common;
+//        private String official;
+//    }
 //
 //    static class Languages {
 //

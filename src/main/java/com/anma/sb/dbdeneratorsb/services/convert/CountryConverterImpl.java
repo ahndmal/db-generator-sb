@@ -2,6 +2,8 @@ package com.anma.sb.dbdeneratorsb.services.convert;
 
 import com.anma.sb.dbdeneratorsb.models.Country;
 import com.anma.sb.dbdeneratorsb.models.web.CountryWeb;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,7 @@ public class CountryConverterImpl implements CountryConverter {
         country.setUnMember(countryWeb.getUnMember());
         country.setStatus(countryWeb.getStatus());
         country.setCode(countryWeb.getTld()[0]);
+
 //        country.setPersons(countryWeb.);
         logger.info("[ == ] country created:");
         logger.info(country.toString());
