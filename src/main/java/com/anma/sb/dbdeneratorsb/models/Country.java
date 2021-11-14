@@ -26,6 +26,10 @@ public class Country {
     private String name;
     @Column(name = "continent_name") private String continentName;
     private String region;
+    private String capital;
+    private String languages;
+    private String borders;
+    private String continents;
     private boolean independent;
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(name = "country_person", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "country_id"))

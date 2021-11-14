@@ -41,15 +41,16 @@ public class CountryWeb {
     private String[] borders;
     private Map<String, String> languages;
     private String[] capital;
+    private Name name;
 //    private Map<String, String> name;
 
 
-    @JsonIgnoreProperties(ignoreUnknown = true, value = "nativeName")
-    static class Name {
-        private String common;
-        private String official;
+//    @JsonIgnoreProperties(ignoreUnknown = true, value = "nativeName")
+//    static class Name {
+//        private String common;
+//        private String official;
 //        static class NativeName {
 //            Map<String, String> prs;
 //        }
-    }
+//    }
 }

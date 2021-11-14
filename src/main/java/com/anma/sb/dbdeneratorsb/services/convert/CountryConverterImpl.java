@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Random;
 
 @Service
@@ -26,6 +27,16 @@ public class CountryConverterImpl implements CountryConverter {
         country.setUnMember(countryWeb.getUnMember());
         country.setStatus(countryWeb.getStatus());
         country.setCode(countryWeb.getTld()[0]);
+        country.setName(countryWeb.getName().getOfficial());
+        country.setPopulation(countryWeb.getPopulation());
+        if (countryWeb.getCapital() != null) {
+            country.setCapital(countryWeb.getCapital()[0]);
+        } else country.setCapital("");
+//        String continents = Arrays.stream(countryWeb.getContinents()).map(c -> c + "," + c).toString();
+        if (countryWeb.getContinents() != null) {
+            country.setContinents(String.join(",", countryWeb.getContinents()));
+        } else country.setContinents("");
+//        country.setLanguages(countryWeb.getLanguages().get()); //todo
 
 //        country.setPersons(countryWeb.);
         logger.info("[ == ] country created:");
