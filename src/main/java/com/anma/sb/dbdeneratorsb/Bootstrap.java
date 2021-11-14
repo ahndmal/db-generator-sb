@@ -3,6 +3,7 @@ package com.anma.sb.dbdeneratorsb;
 import com.anma.sb.dbdeneratorsb.models.Cat;
 import com.anma.sb.dbdeneratorsb.models.Country;
 import com.anma.sb.dbdeneratorsb.models.Person;
+import com.anma.sb.dbdeneratorsb.models.web.CountryWeb;
 import com.anma.sb.dbdeneratorsb.repo.CatRepo;
 import com.anma.sb.dbdeneratorsb.repo.CountryRepo;
 import com.anma.sb.dbdeneratorsb.repo.PersonRepo;
@@ -60,10 +61,17 @@ public class Bootstrap implements CommandLineRunner {
     private void createCountries() {
 //        if (countryService.allCountries().size() == 0) {
             logger.info("[ === ] creating countries ...");
-            countryService.allCountries().forEach(countryWeb -> {
-                Country country = countryConverter.convert(countryWeb);
-                countryRepo.save(country);
-            });
+        for (int i = 1; i < countryService.allCountries().size(); i++) {
+            Object[] array = countryService.allCountries().toArray();
+            Country country = countryConverter.convert((CountryWeb) array[i]);
+            country.setId(i);
+            countryRepo.save(country);
+        }
+//            countryService.allCountries().forEach(countryWeb -> {
+//                Country country = countryConverter.convert(countryWeb);
+//                country.setId();
+//                countryRepo.save(country);
+//            });
 //        }
     }
 

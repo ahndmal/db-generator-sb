@@ -18,4 +18,5 @@ public class CountryWeb {
     private String cca2;
     private String region;
     private boolean independent;
+    private String[] tld;
 }
