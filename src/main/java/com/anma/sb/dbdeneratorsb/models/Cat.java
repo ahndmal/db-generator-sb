@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -17,6 +15,7 @@ import javax.persistence.Id;
 public class Cat {
 
     @Id
+    @Column(name = "cat_id")
     private String id;
     private String name;
     private String color;
@@ -31,5 +30,8 @@ public class Cat {
     @Column(name = "dog_friendly") private int dogFriendly;
     private int intelligence;
     private int hairless;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id", referencedColumnName = "person_id")
+    private Person owner;
 
 }

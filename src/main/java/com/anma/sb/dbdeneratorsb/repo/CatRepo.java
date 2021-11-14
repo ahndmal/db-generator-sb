@@ -1,4 +1,4 @@
-package com.anma.sb.dbdeneratorsb;
+package com.anma.sb.dbdeneratorsb.repo;
 
 import com.anma.sb.dbdeneratorsb.models.Cat;
 import org.springframework.data.jpa.repository.JpaRepository;
