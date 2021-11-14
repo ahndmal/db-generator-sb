@@ -30,6 +30,7 @@ public class Cat {
     @Column(name = "dog_friendly") private int dogFriendly;
     private int intelligence;
     private int hairless;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")
     private Person owner;

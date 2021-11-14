@@ -22,27 +22,22 @@ public class Person {
     private LocalDateTime createdAt = LocalDateTime.now();
     @OneToMany
     private List<Cat> cats;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id", referencedColumnName = "country_id")
+    private Country country;
 
     public Person() {}
 
-    public Person(long id, String name, String email, String gender, String status, boolean hasChildren) {
+    public Person(long id, String name, String email, String gender, String status, boolean hasChildren, LocalDateTime createdAt, List<Cat> cats, Country country) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.gender = gender;
         this.status = status;
         this.hasChildren = hasChildren;
+        this.createdAt = createdAt;
         this.cats = cats;
-    }
-
-    public Person(long id, String name, String email, String gender, String status, boolean hasChildren, List<Cat> cats) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.gender = gender;
-        this.status = status;
-        this.hasChildren = hasChildren;
-        this.cats = cats;
+        this.country = country;
     }
 
     public long getId() {
@@ -107,5 +102,13 @@ public class Person {
 
     public void setCats(List<Cat> cats) {
         this.cats = cats;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

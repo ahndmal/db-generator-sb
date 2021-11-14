@@ -1,4 +1,4 @@
-package com.anma.sb.dbdeneratorsb.services;
+package com.anma.sb.dbdeneratorsb.services.web;
 
 import com.anma.sb.dbdeneratorsb.models.web.CatWeb;
 import org.springframework.beans.factory.annotation.Autowired;
