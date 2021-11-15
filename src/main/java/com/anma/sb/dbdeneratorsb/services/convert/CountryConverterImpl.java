@@ -27,9 +27,11 @@ public class CountryConverterImpl implements CountryConverter {
         country.setUnMember(countryWeb.getUnMember());
         country.setStatus(countryWeb.getStatus());
 
-        if (countryWeb.getTld()[0] != null) {
-            country.setCode(countryWeb.getTld()[0]);
-        } else country.setCode("");
+        if (countryWeb.getTld() != null) {
+            if (countryWeb.getTld()[0] != null && countryWeb.getTld().length > 0) {
+                country.setCode(countryWeb.getTld()[0]);
+            } else country.setCode("");
+        }
 
         country.setName(countryWeb.getName().getOfficial());
         country.setPopulation(countryWeb.getPopulation());

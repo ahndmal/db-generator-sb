@@ -31,8 +31,8 @@ public class Cat {
     private int intelligence;
     private int hairless;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id", referencedColumnName = "person_id")
-    private Person owner;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "person_id", referencedColumnName = "person_id")
+//    private Person owner;
 
 }

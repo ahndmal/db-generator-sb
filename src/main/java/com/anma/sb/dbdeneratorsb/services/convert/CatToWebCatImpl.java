@@ -2,6 +2,7 @@ package com.anma.sb.dbdeneratorsb.services.convert;
 
 import com.anma.sb.dbdeneratorsb.models.Cat;
 import com.anma.sb.dbdeneratorsb.models.web.CatWeb;
+import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -22,6 +23,9 @@ public class CatToWebCatImpl implements CatToWebCat {
                 .intelligence(catWeb.getIntelligence())
                 .wikipediaUrl(catWeb.getWikipediaUrl())
                 .origin(catWeb.getOrigin())
+                .name(Faker.instance().cat().name())
+                .breed(Faker.instance().cat().breed())
+                .registry(Faker.instance().cat().registry())
                 .build();
     }
 

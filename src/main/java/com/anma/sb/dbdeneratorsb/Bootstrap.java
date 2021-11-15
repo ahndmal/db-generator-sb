@@ -4,6 +4,7 @@ import com.anma.sb.dbdeneratorsb.models.Cat;
 import com.anma.sb.dbdeneratorsb.models.Country;
 import com.anma.sb.dbdeneratorsb.models.Person;
 import com.anma.sb.dbdeneratorsb.models.web.CountryWeb;
+import com.anma.sb.dbdeneratorsb.models.web.PersonWeb;
 import com.anma.sb.dbdeneratorsb.repo.CatRepo;
 import com.anma.sb.dbdeneratorsb.repo.CountryRepo;
 import com.anma.sb.dbdeneratorsb.repo.PersonRepo;
@@ -54,7 +55,7 @@ public class Bootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        createCountries();
+        
 
     }
 
@@ -78,10 +79,21 @@ public class Bootstrap implements CommandLineRunner {
 
     private void createPersons() {
         logger.info("[ === ] creating Persons ...");
+//        for (int i = 0; i < personWebService.allPersons().size(); i++) {
+//            Object[] array = personWebService.allPersons().toArray();
+//            Person person = personConverter.convert((PersonWeb) array[i]);
+//            person.setCountryId();
+//            person.setGender();
+//            person.setId(i);
+//            personRepo.save(person);
+//        }
         personWebService.allPersons().forEach(personWeb -> {
+            logger.info("[ ** ] " + personWeb.toString());
             Person person = personConverter.convert(personWeb);
-            // todo
+            logger.info("[ --- ] person created: ");
+            logger.info(person.toString());
             personRepo.save(person);
+
         });
     }
 
@@ -89,10 +101,6 @@ public class Bootstrap implements CommandLineRunner {
         logger.info("[ === ] creating Cats ...");
         catService.allCats().forEach(catWeb -> {
             Cat cat = catConverter.convert(catWeb);
-            cat.setName(Faker.instance().cat().name());
-            cat.setBreed(Faker.instance().cat().breed());
-            cat.setRegistry(Faker.instance().cat().registry());
-
             catRepo.save(cat);
         });
     }
