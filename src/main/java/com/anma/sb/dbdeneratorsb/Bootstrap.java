@@ -65,8 +65,8 @@ public class Bootstrap implements CommandLineRunner {
             Object[] array = countryService.allCountries().toArray();
             Country country = countryConverter.convert((CountryWeb) array[i]);
             country.setId(i);
-            System.out.println((CountryWeb) array[i]);
-//            countryRepo.save(country);
+//            System.out.println((CountryWeb) array[i]);
+            countryRepo.save(country);
         }
 //            countryService.allCountries().forEach(countryWeb -> {
 //                Country country = countryConverter.convert(countryWeb);

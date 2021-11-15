@@ -26,9 +26,14 @@ public class CountryConverterImpl implements CountryConverter {
         country.setRegion(countryWeb.getRegion());
         country.setUnMember(countryWeb.getUnMember());
         country.setStatus(countryWeb.getStatus());
-        country.setCode(countryWeb.getTld()[0]);
+
+        if (countryWeb.getTld()[0] != null) {
+            country.setCode(countryWeb.getTld()[0]);
+        } else country.setCode("");
+
         country.setName(countryWeb.getName().getOfficial());
         country.setPopulation(countryWeb.getPopulation());
+
         if (countryWeb.getCapital() != null) {
             country.setCapital(countryWeb.getCapital()[0]);
         } else country.setCapital("");
@@ -36,9 +41,14 @@ public class CountryConverterImpl implements CountryConverter {
         if (countryWeb.getContinents() != null) {
             country.setContinents(String.join(",", countryWeb.getContinents()));
         } else country.setContinents("");
-//        country.setLanguages(countryWeb.getLanguages().get()); //todo
 
-//        country.setPersons(countryWeb.);
+        if (countryWeb.getBorders() != null) {
+            country.setBorders(String.join(",", countryWeb.getBorders()));
+        } else country.setBorders("");
+        if (countryWeb.getLanguages() != null) {
+            country.setLanguages(String.join(",", countryWeb.getLanguages().values()));
+        } else country.setLanguages("");
+
         logger.info("[ == ] country created:");
         logger.info(country.toString());
         return country;
