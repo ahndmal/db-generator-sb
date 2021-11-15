@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CatWeb {
 
+    private long catId;
     private String id;
     private String name;
     private String color;

@@ -55,7 +55,7 @@ public class Bootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        
+        createCats();
 
     }
 
@@ -101,6 +101,8 @@ public class Bootstrap implements CommandLineRunner {
         logger.info("[ === ] creating Cats ...");
         catService.allCats().forEach(catWeb -> {
             Cat cat = catConverter.convert(catWeb);
+            logger.info("[***] cat" + cat.toString());
+            logger.info(cat.toString());
             catRepo.save(cat);
         });
     }

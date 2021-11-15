@@ -31,6 +31,7 @@ public class Person {
     @Column(name = "has_children") private boolean hasChildren;
     private boolean engaged;
     private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(name="cat_id") private long catId;
 //    @OneToMany
 //    private List<Cat> cats;
     @Column(name = "country_id") private long countryId;
