@@ -32,6 +32,7 @@ public class CountryWeb {
     private long area;
     private long population;
     private String status;
+    @JsonProperty(value = "un_member")
     private String unMember;
     private String cca2;
     private String region;

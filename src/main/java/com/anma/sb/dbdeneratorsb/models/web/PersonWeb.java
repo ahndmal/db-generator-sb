@@ -2,6 +2,7 @@ package com.anma.sb.dbdeneratorsb.models.web;
 
 import com.anma.sb.dbdeneratorsb.models.Cat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,8 +25,11 @@ public class PersonWeb {
     private int age;
     private String gender;
     private String status;
+    @JsonProperty(value = "created_at")
     private LocalDateTime createdAt;
+    @JsonProperty(value = "country_code")
     private String countryCode;
+    @JsonProperty(value = "has_children")
     private boolean hasChildren;
     private boolean engaged;
     private int cars;
