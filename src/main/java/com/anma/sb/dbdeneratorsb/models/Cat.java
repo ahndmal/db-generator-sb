@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Cat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cat_id")
     private long catId;
     private String id;

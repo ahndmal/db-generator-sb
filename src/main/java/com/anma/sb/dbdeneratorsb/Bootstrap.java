@@ -15,6 +15,7 @@ import com.anma.sb.dbdeneratorsb.services.convert.CatToWebCat;
 import com.anma.sb.dbdeneratorsb.services.convert.CountryConverter;
 import com.anma.sb.dbdeneratorsb.services.convert.PersonConverter;
 import com.github.javafaker.Faker;
+import org.apache.commons.lang3.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,11 @@ public class Bootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        createCats();
+
+
+//        personRepo.findAll().forEach(p -> {
+//            p.setCatId(RandomUtils.nextLong(1, 66));
+//        });
 
     }
 
