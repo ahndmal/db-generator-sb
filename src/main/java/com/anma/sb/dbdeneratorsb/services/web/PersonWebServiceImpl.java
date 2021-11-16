@@ -1,7 +1,9 @@
 package com.anma.sb.dbdeneratorsb.services.web;
 
+import com.anma.sb.dbdeneratorsb.models.Person;
 import com.anma.sb.dbdeneratorsb.models.web.PersonWeb;
 import com.anma.sb.dbdeneratorsb.models.web.PersonWebArray;
+import com.anma.sb.dbdeneratorsb.repo.PersonRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -12,17 +14,21 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class PersonWebServiceImpl implements PersonWebService {
 
     private final RestTemplate template = new RestTemplate();
+    private final PersonRepo personRepo;
     private WebClient webClient = WebClient.create();
 
     private final Environment environment;
 
-    public PersonWebServiceImpl(Environment environment) {
+    public PersonWebServiceImpl(PersonRepo personRepo, Environment environment) {
+        this.personRepo = personRepo;
         this.environment = environment;
     }
 
@@ -56,6 +62,19 @@ public class PersonWebServiceImpl implements PersonWebService {
         }
         log.info("[ *** allPersons size] " + allPersons.size());
         return allPersons;
+    }
+
+    @Override
+    public List<Long> personIds() {
+        return personRepo.findAll()
+                .stream()
+                .map(Person::getId)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Long getPersRandomId() {
+        return personIds().get(new Random().nextInt(allPersons().size()));
     }
 
     @Override

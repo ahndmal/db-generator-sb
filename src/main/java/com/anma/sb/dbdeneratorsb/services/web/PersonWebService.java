@@ -7,5 +7,9 @@ import java.util.List;
 public interface PersonWebService {
     PersonWeb getPersonById(long id);
     List<PersonWeb> allPersons();
+
+    Long getPersRandomId();
+
     List<PersonWeb> allPersonsClient();
+    public List<Long> personIds();
 }
