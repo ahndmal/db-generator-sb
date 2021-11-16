@@ -14,6 +14,8 @@ public class RandomServiceImpl implements RandomService {
 
     private final CountryRepo countryRepo;
     private final Random random = new Random();
+    private String lorem = "Lorem ipsum dolor sit amet consectetur adipiscing, elit dictumst primis lacinia ante " +
+            "habitasse dis, dignissim nec curae sociosqu montes hendrerit, donec parturient ";
 
     @Autowired
     public RandomServiceImpl(CountryRepo countryRepo) {
@@ -45,6 +47,16 @@ public class RandomServiceImpl implements RandomService {
     @Override
     public int getAge(int max) {
         return random.nextInt(max);
+    }
+
+    @Override
+    public String getBody(int length) {
+        String[] words = lorem.split(" ");
+        String body = "";
+        for (int i = 0; i < length; i++) {
+            body = body.concat(words[random.nextInt(words.length - 1)]).concat(" ");
+        }
+        return body;
     }
 
     @Override

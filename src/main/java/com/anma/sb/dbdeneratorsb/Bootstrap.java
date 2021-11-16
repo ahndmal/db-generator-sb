@@ -1,9 +1,6 @@
 package com.anma.sb.dbdeneratorsb;
 
-import com.anma.sb.dbdeneratorsb.models.Car;
-import com.anma.sb.dbdeneratorsb.models.Cat;
-import com.anma.sb.dbdeneratorsb.models.Country;
-import com.anma.sb.dbdeneratorsb.models.Person;
+import com.anma.sb.dbdeneratorsb.models.*;
 import com.anma.sb.dbdeneratorsb.models.web.CarWeb;
 import com.anma.sb.dbdeneratorsb.models.web.CountryWeb;
 import com.anma.sb.dbdeneratorsb.repo.*;
@@ -13,14 +10,6 @@ import com.anma.sb.dbdeneratorsb.services.web.*;
 import com.anma.sb.dbdeneratorsb.services.convert.CatToWebCat;
 import com.anma.sb.dbdeneratorsb.services.convert.CountryConverter;
 import com.anma.sb.dbdeneratorsb.services.convert.PersonConverter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
-import com.google.maps.GeocodingApiRequest;
-import com.google.maps.PendingResult;
-import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +17,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.UUID;
 
 @Component
@@ -53,6 +40,7 @@ public class Bootstrap implements CommandLineRunner {
     private final CityService cityService;
     private final CityRepo cityRepo;
     private final Environment environment;
+    private final CommentRepo commentRepo;
 
     @Autowired
     public Bootstrap(CatService catService, CatRepo catRepo,
@@ -63,7 +51,7 @@ public class Bootstrap implements CommandLineRunner {
                      CarRepo carRepo, CarService carService,
                      CarConverter carConverter, RandomService randomService,
                      CityService cityService, CityRepo cityRepo,
-                     Environment environment) {
+                     Environment environment, CommentRepo commentRepo) {
         this.catService = catService;
         this.catRepo = catRepo;
         this.personRepo = personRepo;
@@ -80,6 +68,7 @@ public class Bootstrap implements CommandLineRunner {
         this.cityService = cityService;
         this.cityRepo = cityRepo;
         this.environment = environment;
+        this.commentRepo = commentRepo;
     }
 
     @Override
@@ -91,6 +80,17 @@ public class Bootstrap implements CommandLineRunner {
 
     private void createComments() {
 
+        for (int i = 0; i < 2000; i++) {
+            logger.info("[ ** ] creating comment");
+            Comment comment = new Comment();
+            comment.setId(i);
+            comment.setBody(randomService.getBody(30));
+            comment.setAuthorId(personWebService.getPersRandomId());
+            comment.setCategory(randomService.getColor());
+            comment.setCreatedAt(LocalDateTime.now());
+            commentRepo.save(comment);
+            logger.info("[ ** ] comments saved " + comment);
+        }
 
     }
 
