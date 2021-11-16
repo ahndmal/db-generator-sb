@@ -32,6 +32,8 @@ public class CarConverterImpl implements CarConverter {
                 .origin(randomService.getOrigin()) // empty
                 .color(randomService.getColor())   // empty
                 .registry(carWeb.getRegistry())
+                .maxSpeed(randomService.getRandomSpeed())
+//                .registry(randomService.getRegistry())
                 .build();
     }
 

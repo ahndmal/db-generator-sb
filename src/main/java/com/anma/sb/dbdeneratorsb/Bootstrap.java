@@ -6,26 +6,31 @@ import com.anma.sb.dbdeneratorsb.models.Country;
 import com.anma.sb.dbdeneratorsb.models.Person;
 import com.anma.sb.dbdeneratorsb.models.web.CarWeb;
 import com.anma.sb.dbdeneratorsb.models.web.CountryWeb;
-import com.anma.sb.dbdeneratorsb.repo.CarRepo;
-import com.anma.sb.dbdeneratorsb.repo.CatRepo;
-import com.anma.sb.dbdeneratorsb.repo.CountryRepo;
-import com.anma.sb.dbdeneratorsb.repo.PersonRepo;
+import com.anma.sb.dbdeneratorsb.repo.*;
 import com.anma.sb.dbdeneratorsb.services.RandomService;
 import com.anma.sb.dbdeneratorsb.services.convert.CarConverter;
-import com.anma.sb.dbdeneratorsb.services.web.CarService;
-import com.anma.sb.dbdeneratorsb.services.web.CatService;
-import com.anma.sb.dbdeneratorsb.services.web.CountryService;
-import com.anma.sb.dbdeneratorsb.services.web.PersonWebService;
+import com.anma.sb.dbdeneratorsb.services.web.*;
 import com.anma.sb.dbdeneratorsb.services.convert.CatToWebCat;
 import com.anma.sb.dbdeneratorsb.services.convert.CountryConverter;
 import com.anma.sb.dbdeneratorsb.services.convert.PersonConverter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.GeocodingApiRequest;
+import com.google.maps.PendingResult;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Component
@@ -45,6 +50,9 @@ public class Bootstrap implements CommandLineRunner {
     private final CarService carService;
     private final CarConverter carConverter;
     private final RandomService randomService;
+    private final CityService cityService;
+    private final CityRepo cityRepo;
+    private final Environment environment;
 
     @Autowired
     public Bootstrap(CatService catService, CatRepo catRepo,
@@ -53,7 +61,9 @@ public class Bootstrap implements CommandLineRunner {
                      PersonConverter personConverter, CountryRepo countryRepo,
                      CountryConverter countryConverter, CountryService countryService,
                      CarRepo carRepo, CarService carService,
-                     CarConverter carConverter, RandomService randomService) {
+                     CarConverter carConverter, RandomService randomService,
+                     CityService cityService, CityRepo cityRepo,
+                     Environment environment) {
         this.catService = catService;
         this.catRepo = catRepo;
         this.personRepo = personRepo;
@@ -67,14 +77,20 @@ public class Bootstrap implements CommandLineRunner {
         this.carService = carService;
         this.carConverter = carConverter;
         this.randomService = randomService;
+        this.cityService = cityService;
+        this.cityRepo = cityRepo;
+        this.environment = environment;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        createCars();
-//        System.out.println(personWebService.getPersRandomId());
-//        System.out.println(personWebService.personIds());
+        createComments();
+
+    }
+
+    private void createComments() {
+
 
     }
 

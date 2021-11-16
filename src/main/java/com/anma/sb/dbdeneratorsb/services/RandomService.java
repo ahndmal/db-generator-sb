@@ -6,4 +6,8 @@ public interface RandomService {
     String getCountryCode();
     String getOrigin();
     int getAge(int max);
+
+    int getRandomSpeed();
+
+    String getRegistry();
 }

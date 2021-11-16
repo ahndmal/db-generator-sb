@@ -46,4 +46,14 @@ public class RandomServiceImpl implements RandomService {
     public int getAge(int max) {
         return random.nextInt(max);
     }
+
+    @Override
+    public int getRandomSpeed() {
+        return random.nextInt(350);
+    }
+
+    @Override
+    public String getRegistry() {
+        return null;
+    }
 }

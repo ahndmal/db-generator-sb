@@ -17,3 +17,4 @@ links:
   cities: "https://restcountries.com/v3.1/capital/{capital}"
   persons: "https://gorest.co.in/public/v1/users"
   cars: "https://the-vehicles-api.herokuapp.com/brands/"
+MAPS_API_KEY: ""
