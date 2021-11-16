@@ -1,26 +1,31 @@
 package com.anma.sb.dbdeneratorsb;
 
+import com.anma.sb.dbdeneratorsb.models.Car;
 import com.anma.sb.dbdeneratorsb.models.Cat;
 import com.anma.sb.dbdeneratorsb.models.Country;
 import com.anma.sb.dbdeneratorsb.models.Person;
+import com.anma.sb.dbdeneratorsb.models.web.CarWeb;
 import com.anma.sb.dbdeneratorsb.models.web.CountryWeb;
-import com.anma.sb.dbdeneratorsb.models.web.PersonWeb;
+import com.anma.sb.dbdeneratorsb.repo.CarRepo;
 import com.anma.sb.dbdeneratorsb.repo.CatRepo;
 import com.anma.sb.dbdeneratorsb.repo.CountryRepo;
 import com.anma.sb.dbdeneratorsb.repo.PersonRepo;
+import com.anma.sb.dbdeneratorsb.services.convert.CarConverter;
+import com.anma.sb.dbdeneratorsb.services.web.CarService;
 import com.anma.sb.dbdeneratorsb.services.web.CatService;
 import com.anma.sb.dbdeneratorsb.services.web.CountryService;
 import com.anma.sb.dbdeneratorsb.services.web.PersonWebService;
 import com.anma.sb.dbdeneratorsb.services.convert.CatToWebCat;
 import com.anma.sb.dbdeneratorsb.services.convert.CountryConverter;
 import com.anma.sb.dbdeneratorsb.services.convert.PersonConverter;
-import com.github.javafaker.Faker;
-import org.apache.commons.lang3.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Component
 public class Bootstrap implements CommandLineRunner {
@@ -35,13 +40,17 @@ public class Bootstrap implements CommandLineRunner {
     private final CountryRepo countryRepo;
     private final CountryConverter countryConverter;
     private final CountryService countryService;
+    private final CarRepo carRepo;
+    private final CarService carService;
+    private final CarConverter carConverter;
 
     @Autowired
     public Bootstrap(CatService catService, CatRepo catRepo,
                      PersonRepo personRepo, CatToWebCat catCOnverter,
                      PersonWebService personWebService,
                      PersonConverter personConverter, CountryRepo countryRepo,
-                     CountryConverter countryConverter, CountryService countryService) {
+                     CountryConverter countryConverter, CountryService countryService,
+                     CarRepo carRepo, CarService carService, CarConverter carConverter) {
         this.catService = catService;
         this.catRepo = catRepo;
         this.personRepo = personRepo;
@@ -51,15 +60,31 @@ public class Bootstrap implements CommandLineRunner {
         this.countryRepo = countryRepo;
         this.countryConverter = countryConverter;
         this.countryService = countryService;
+        this.carRepo = carRepo;
+        this.carService = carService;
+        this.carConverter = carConverter;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        createCars();
 
+    }
 
-//        personRepo.findAll().forEach(p -> {
-//            p.setCatId(RandomUtils.nextLong(1, 66));
+    private void createCars() {
+
+        for (int i = 0; i < carService.alLCars().size(); i++) {
+            Object[] array = carService.alLCars().toArray();
+            Car car = carConverter.convert((CarWeb) array[i]);
+            car.setCreatedAt(LocalDateTime.now());
+            car.setCarId((long) i);
+            car.setId(UUID.randomUUID().toString());
+            carRepo.save(car);
+        }
+
+//        carService.alLCars().forEach(carW -> {
+//
 //        });
 
     }

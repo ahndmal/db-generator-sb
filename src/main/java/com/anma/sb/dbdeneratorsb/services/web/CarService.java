@@ -1,9 +1,12 @@
 package com.anma.sb.dbdeneratorsb.services.web;
 
-import com.anma.sb.dbdeneratorsb.models.Car;
 import com.anma.sb.dbdeneratorsb.models.web.CarWeb;
 
+import java.util.List;
+
 public interface CarService {
-    Car convert(CarWeb carWeb);
-    CarWeb convert(Car car);
+
+    List<CarWeb> alLCars();
+    CarWeb carById(long id);
+
 }
