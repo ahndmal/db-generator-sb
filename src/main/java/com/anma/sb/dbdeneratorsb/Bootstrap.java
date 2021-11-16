@@ -10,6 +10,7 @@ import com.anma.sb.dbdeneratorsb.repo.CarRepo;
 import com.anma.sb.dbdeneratorsb.repo.CatRepo;
 import com.anma.sb.dbdeneratorsb.repo.CountryRepo;
 import com.anma.sb.dbdeneratorsb.repo.PersonRepo;
+import com.anma.sb.dbdeneratorsb.services.RandomService;
 import com.anma.sb.dbdeneratorsb.services.convert.CarConverter;
 import com.anma.sb.dbdeneratorsb.services.web.CarService;
 import com.anma.sb.dbdeneratorsb.services.web.CatService;
@@ -43,6 +44,7 @@ public class Bootstrap implements CommandLineRunner {
     private final CarRepo carRepo;
     private final CarService carService;
     private final CarConverter carConverter;
+    private final RandomService randomService;
 
     @Autowired
     public Bootstrap(CatService catService, CatRepo catRepo,
@@ -50,7 +52,8 @@ public class Bootstrap implements CommandLineRunner {
                      PersonWebService personWebService,
                      PersonConverter personConverter, CountryRepo countryRepo,
                      CountryConverter countryConverter, CountryService countryService,
-                     CarRepo carRepo, CarService carService, CarConverter carConverter) {
+                     CarRepo carRepo, CarService carService,
+                     CarConverter carConverter, RandomService randomService) {
         this.catService = catService;
         this.catRepo = catRepo;
         this.personRepo = personRepo;
@@ -63,23 +66,28 @@ public class Bootstrap implements CommandLineRunner {
         this.carRepo = carRepo;
         this.carService = carService;
         this.carConverter = carConverter;
+        this.randomService = randomService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
         createCars();
+//        System.out.println(personWebService.getPersRandomId());
+//        System.out.println(personWebService.personIds());
 
     }
 
     private void createCars() {
 
+        logger.info("[ ** ] Creating cars");
         for (int i = 0; i < carService.alLCars().size(); i++) {
             Object[] array = carService.alLCars().toArray();
             Car car = carConverter.convert((CarWeb) array[i]);
             car.setCreatedAt(LocalDateTime.now());
             car.setCarId((long) i);
             car.setId(UUID.randomUUID().toString());
+            logger.info("[ ** ] " + car.toString());
             carRepo.save(car);
         }
 

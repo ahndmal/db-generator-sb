@@ -74,7 +74,8 @@ public class PersonWebServiceImpl implements PersonWebService {
 
     @Override
     public Long getPersRandomId() {
-        return personIds().get(new Random().nextInt(allPersons().size()));
+        return personIds().get(
+                new Random().nextInt(personRepo.findAll().size()));
     }
 
     @Override

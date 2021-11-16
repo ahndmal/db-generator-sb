@@ -33,5 +33,4 @@ public class PersonWeb {
     private boolean hasChildren;
     private boolean engaged;
     private int cars;
-    @JsonIgnore private List<Cat> cats;
 }
