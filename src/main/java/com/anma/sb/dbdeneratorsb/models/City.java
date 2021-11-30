@@ -1,29 +1,34 @@
 package com.anma.sb.dbdeneratorsb.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "cities")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "city_id")
     private long id;
     private String name;
+    @Column(name = "country_code")
     private String code;
     private String continent;
+    @Column(name = "created_at") private LocalDateTime createdAt;
+    @Column(name = "country_id") private long countryId;
     private long population;
 
     public City() {
     }
 
-    public City(long id, String name, String code, String continent, long population) {
+    public City(long id, String name, String code, String continent, LocalDateTime createdAt, long countryId, long population) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.continent = continent;
+        this.createdAt = createdAt;
+        this.countryId = countryId;
         this.population = population;
     }
 
@@ -57,6 +62,22 @@ public class City {
 
     public void setContinent(String continent) {
         this.continent = continent;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public long getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(long countryId) {
+        this.countryId = countryId;
     }
 
     public long getPopulation() {
