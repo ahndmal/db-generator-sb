@@ -21,7 +21,6 @@
 #  persons: "https://gorest.co.in/public/v1/users"
 #  cars: "https://the-vehicles-api.herokuapp.com/brands/"
 #MAPS_API_KEY: ""
-#---
 
 spring:
   datasource:

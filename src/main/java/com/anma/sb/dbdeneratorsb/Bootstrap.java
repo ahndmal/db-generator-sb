@@ -79,9 +79,9 @@ public class Bootstrap implements CommandLineRunner {
 
     }
 
-    private void createComments() {
+    private void createComments(int amount) {
 
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < amount; i++) {
             logger.info("[ ** ] creating comment");
             Comment comment = new Comment();
             comment.setId(i);
@@ -107,10 +107,6 @@ public class Bootstrap implements CommandLineRunner {
             logger.info("[ ** ] " + car.toString());
             carRepo.save(car);
         }
-
-//        carService.alLCars().forEach(carW -> {
-//
-//        });
 
     }
 

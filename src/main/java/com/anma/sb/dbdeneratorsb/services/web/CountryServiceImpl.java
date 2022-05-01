@@ -41,7 +41,6 @@ public class CountryServiceImpl implements CountryService {
         return null;
     }
 
-
     @Override
     public List<CountryWeb> allCountries() {
         final String URL = environment.getProperty("links.countries");

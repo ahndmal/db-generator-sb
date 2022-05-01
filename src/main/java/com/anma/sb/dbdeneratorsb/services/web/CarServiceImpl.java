@@ -1,8 +1,6 @@
 package com.anma.sb.dbdeneratorsb.services.web;
 
 import com.anma.sb.dbdeneratorsb.models.web.CarWeb;
-import com.anma.sb.dbdeneratorsb.repo.CarRepo;
-import com.anma.sb.dbdeneratorsb.services.convert.CarConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -20,7 +18,9 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarWeb> alLCars() {
-        return Arrays.stream(template.getForObject(URL, CarWeb[].class)).collect(Collectors.toList());
+//         webClient.get().uri(URL).retrieve().bodyToMono(List.class).subscribe();
+        return Arrays.stream(template.getForObject(URL, CarWeb[].class))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class MapsServiceImpl implements MapsService {
@@ -28,15 +29,16 @@ public class MapsServiceImpl implements MapsService {
     public void getPlace() {
 
         try {
-
+            var ctxAddress = "Kyiv";
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             GeoApiContext context = new GeoApiContext.Builder()
                     .apiKey(environment.getProperty("MAPS_API_KEY"))
+                    .connectTimeout(10, TimeUnit.SECONDS)
+                    .maxRetries(3)
                     .build();
 //
-            GeocodingResult[] results = GeocodingApi.geocode(context,
-                    "Kyiv").await();
+            GeocodingResult[] results = GeocodingApi.geocode(context, ctxAddress).await();
 
             System.out.println(gson.toJson(results[0].addressComponents));
 
