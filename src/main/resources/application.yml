@@ -5,7 +5,7 @@
 #  datasource:
 #    url: jdbc:postgresql://castor.db.elephantsql.com/jqnqjfrd
 #    username: jqnqjfrd
-#    password: dmqWt7Gr8K_ssKyuDSoRuRVy2uRx7cAU
+#    password: PASS
 #    driver-class-name: org.postgresql.Driver
 #  jpa:
 #    properties:
